@@ -32,7 +32,7 @@ local vB,vK=mk(34,"🕊️ VOAR: OFF","L",function()end)
 local nB,nK=mk(62,"👻 NOCLIP: OFF","N",function()end)
 local gB,gK=mk(90,"🧲 GRUDAR: OFF","K",function()end)
 local aB,aK=mk(118,"⚔️ ATACAR: OFF","J",function()end)
-local pB=mk(146,"👥 PLAYERS","P",function()end)
+local pB=mk(146,"👥 PLAYERS","P",function()pF.Visible=not pF.Visible if pF.Visible then up()end end)
 local vF=Instance.new("Frame")vF.Size=UDim2.new(0.9,0,0,20)vF.Position=UDim2.new(0.05,0,0,174)vF.BackgroundColor3=Color3.fromRGB(10,10,20)vF.BorderSizePixel=0 vF.Parent=m
 local vF1=Instance.new("UICorner")vF1.CornerRadius=UDim.new(0,5)vF1.Parent=vF
 local vL=Instance.new("TextLabel")vL.Size=UDim2.new(1,-50,1,0)vL.Position=UDim2.new(0,5,0,0)vL.BackgroundTransparency=1 vL.Text="Voo:80"vL.TextColor3=Color3.fromRGB(0,200,255)vL.TextSize=10 vL.Font=Enum.Font.GothamBold vL.Parent=vF
