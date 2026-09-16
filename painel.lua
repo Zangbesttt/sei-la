@@ -1,13 +1,12 @@
---[[ PAINEL PRINCIPAL ]]
+--[[ PAINEL + PLAYERS ]]
 local P=game:GetService("Players")local R=game:GetService("RunService")local U=game:GetService("UserInputService")local LP=P.LocalPlayer
-local C={V=false,Vel=80,VC=nil,NC=false,NCC=nil,G=nil,GC=nil,A=false,AC=nil,L={"=== LOG ==="},Teclas={Voo="L",Noclip="N",Grudar="K",Atacar="J"}}
-local function log(m)table.insert(C.L,"["..os.date("%H:%M:%S").."] "..m)if #C.L>60 then table.remove(C.L,2)end if _G.UL then _G.UL()end end
-_G.LOG=log
+local C={V=false,Vel=80,VC=nil,NC=false,NCC=nil,G=nil,GC=nil,A=false,AC=nil,Teclas={Voo="L",Noclip="N",Grudar="K",Atacar="J"}}
+local function log(m)if _G.LOGMSG then _G.LOGMSG(m)end end
 local sg=Instance.new("ScreenGui")sg.Name="P1"sg.ResetOnSpawn=false sg.Parent=LP:WaitForChild("PlayerGui")
 local mini=Instance.new("TextButton")mini.Size=UDim2.new(0,55,0,55)mini.Position=UDim2.new(0,15,0.5,-27)mini.BackgroundColor3=Color3.fromRGB(0,0,0)mini.BorderSizePixel=0 mini.Text="⚡"mini.TextColor3=Color3.fromRGB(0,180,255)mini.TextSize=26 mini.Font=Enum.Font.GothamBold mini.Visible=false mini.Active=true mini.Parent=sg
 local minic=Instance.new("UICorner")minic.CornerRadius=UDim.new(0,27)minic.Parent=mini
 local minis=Instance.new("UIStroke")minis.Color=Color3.fromRGB(0,150,255)minis.Thickness=2.5 minis.Parent=mini
-local m=Instance.new("Frame")m.Size=UDim2.new(0,250,0,510)m.Position=UDim2.new(0,20,0,20)m.BackgroundColor3=Color3.fromRGB(0,0,0)m.BorderSizePixel=0 m.Active=true m.Draggable=true m.Parent=sg
+local m=Instance.new("Frame")m.Size=UDim2.new(0,250,0,340)m.Position=UDim2.new(0,20,0,20)m.BackgroundColor3=Color3.fromRGB(0,0,0)m.BorderSizePixel=0 m.Active=true m.Draggable=true m.Parent=sg
 local mc=Instance.new("UICorner")mc.CornerRadius=UDim.new(0,10)mc.Parent=m
 local ms=Instance.new("UIStroke")ms.Color=Color3.fromRGB(0,150,255)ms.Thickness=2 ms.Parent=m
 mini.MouseButton1Click:Connect(function()m.Visible=true mini.Visible=false end)
@@ -30,19 +29,56 @@ local vB,vK=mk(34,"🕊️ VOAR: OFF","L",function()end)
 local nB,nK=mk(62,"👻 NOCLIP: OFF","N",function()end)
 local gB,gK=mk(90,"🧲 GRUDAR: OFF","K",function()end)
 local aB,aK=mk(118,"⚔️ ATACAR: OFF","J",function()end)
-local vF=Instance.new("Frame")vF.Size=UDim2.new(0.9,0,0,20)vF.Position=UDim2.new(0.05,0,0,146)vF.BackgroundColor3=Color3.fromRGB(10,10,20)vF.BorderSizePixel=0 vF.Parent=m
+local pB=mk(146,"👥 PLAYERS","P",function()end)
+local vF=Instance.new("Frame")vF.Size=UDim2.new(0.9,0,0,20)vF.Position=UDim2.new(0.05,0,0,174)vF.BackgroundColor3=Color3.fromRGB(10,10,20)vF.BorderSizePixel=0 vF.Parent=m
 local vF1=Instance.new("UICorner")vF1.CornerRadius=UDim.new(0,5)vF1.Parent=vF
 local vL=Instance.new("TextLabel")vL.Size=UDim2.new(1,-50,1,0)vL.Position=UDim2.new(0,5,0,0)vL.BackgroundTransparency=1 vL.Text="Voo:80"vL.TextColor3=Color3.fromRGB(0,200,255)vL.TextSize=10 vL.Font=Enum.Font.GothamBold vL.Parent=vF
 local vM=Instance.new("TextButton")vM.Size=UDim2.new(0,20,0,16)vM.Position=UDim2.new(1,-46,0,2)vM.BackgroundColor3=Color3.fromRGB(20,20,40)vM.BorderSizePixel=0 vM.Text="−"vM.TextColor3=Color3.fromRGB(0,180,255)vM.TextSize=11 vM.Font=Enum.Font.GothamBold vM.Parent=vF
 local vM1=Instance.new("UICorner")vM1.CornerRadius=UDim.new(0,4)vM1.Parent=vM
 local vP=Instance.new("TextButton")vP.Size=UDim2.new(0,20,0,16)vP.Position=UDim2.new(1,-24,0,2)vP.BackgroundColor3=Color3.fromRGB(20,20,40)vP.BorderSizePixel=0 vP.Text="+"vP.TextColor3=Color3.fromRGB(0,180,255)vP.TextSize=11 vP.Font=Enum.Font.GothamBold vP.Parent=vF
 local vP1=Instance.new("UICorner")vP1.CornerRadius=UDim.new(0,4)vP1.Parent=vP
-local lF=Instance.new("Frame")lF.Size=UDim2.new(0.9,0,0,280)lF.Position=UDim2.new(0.05,0,0,174)lF.BackgroundColor3=Color3.fromRGB(5,5,15)lF.BorderSizePixel=0 lF.Parent=m
-local lF1=Instance.new("UICorner")lF1.CornerRadius=UDim.new(0,6)lF1.Parent=lF
-local lB=Instance.new("TextBox")lB.Size=UDim2.new(1,-8,1,-8)lB.Position=UDim2.new(0,4,0,4)lB.BackgroundTransparency=1 lB.Text="=== LOG ==="lB.TextColor3=Color3.fromRGB(180,220,180)lB.TextSize=9 lB.Font=Enum.Font.Code lB.TextXAlignment=Enum.TextXAlignment.Left lB.TextYAlignment=Enum.TextYAlignment.Top lB.TextWrapped=true lB.TextEditable=true lB.ClearTextOnFocus=false lB.MultiLine=true lB.Parent=lF
-_G.UL=function()lB.Text=table.concat(C.L,"\n")end
-local cpB=Instance.new("TextButton")cpB.Size=UDim2.new(0.9,0,0,20)cpB.Position=UDim2.new(0.05,0,1,-24)cpB.BackgroundColor3=Color3.fromRGB(15,30,60)cpB.BorderSizePixel=0 cpB.Text="📋 COPIAR"cpB.TextColor3=Color3.fromRGB(0,200,255)cpB.TextSize=10 cpB.Font=Enum.Font.GothamBold cpB.Parent=m
-local cpB1=Instance.new("UICorner")cpB1.CornerRadius=UDim.new(0,6)cpB1.Parent=cpB
+local stF=Instance.new("Frame")stF.Size=UDim2.new(0.9,0,0,22)stF.Position=UDim2.new(0.05,0,0,200)stF.BackgroundColor3=Color3.fromRGB(5,15,5)stF.BorderSizePixel=0 stF.Parent=m
+local stF1=Instance.new("UICorner")stF1.CornerRadius=UDim.new(0,5)stF1.Parent=stF
+local stL=Instance.new("TextLabel")stL.Size=UDim2.new(1,-10,1,0)stL.Position=UDim2.new(0,5,0,0)stL.BackgroundTransparency=1 stL.Text="Pronto"stL.TextColor3=Color3.fromRGB(150,255,150)stL.TextSize=9 stL.Font=Enum.Font.Gotham stL.TextXAlignment=Enum.TextXAlignment.Left stL.Parent=stF
+_G.LOGMSG=function(msg)stL.Text=msg end
+-- PAINEL PLAYERS (dentro do mesmo)
+local pF=Instance.new("Frame")pF.Size=UDim2.new(0,280,0,340)pF.Position=UDim2.new(0,290,0,20)pF.BackgroundColor3=Color3.fromRGB(0,0,0)pF.BorderSizePixel=0 pF.Active=true pF.Draggable=true pF.Visible=false pF.Parent=sg
+local pF1=Instance.new("UICorner")pF1.CornerRadius=UDim.new(0,10)pF1.Parent=pF
+local pF2=Instance.new("UIStroke")pF2.Color=Color3.fromRGB(0,150,255)pF2.Thickness=2 pF2.Parent=pF
+local pT=Instance.new("TextLabel")pT.Size=UDim2.new(1,0,0,28)pT.BackgroundColor3=Color3.fromRGB(10,10,20)pT.BorderSizePixel=0 pT.Text="👥 PLAYERS"pT.TextColor3=Color3.fromRGB(0,180,255)pT.TextSize=12 pT.Font=Enum.Font.GothamBold pT.Parent=pF
+local pT1=Instance.new("UICorner")pT1.CornerRadius=UDim.new(0,10)pT1.Parent=pT
+local pX=Instance.new("TextButton")pX.Size=UDim2.new(0,22,0,22)pX.Position=UDim2.new(1,-26,0,3)pX.BackgroundColor3=Color3.fromRGB(60,20,20)pX.BorderSizePixel=0 pX.Text="X"pX.TextColor3=Color3.fromRGB(255,120,120)pX.TextSize=12 pX.Font=Enum.Font.GothamBold pX.Parent=pF
+local pX1=Instance.new("UICorner")pX1.CornerRadius=UDim.new(0,5)pX1.Parent=pX
+local pS=Instance.new("ScrollingFrame")pS.Size=UDim2.new(1,-16,1,-50)pS.Position=UDim2.new(0,8,0,36)pS.BackgroundTransparency=1 pS.BorderSizePixel=0 pS.ScrollBarThickness=4 pS.Parent=pF
+local pL=Instance.new("UIListLayout")pL.Padding=UDim.new(0,3)pL.Parent=pS
+local GG={Alvo=nil,Conn=nil}
+local function gr()local c=LP.Character return c and c:FindFirstChild("HumanoidRootPart")end
+local function up()
+for _,c in pairs(pS:GetChildren())do if c:IsA("Frame")then c:Destroy()end end
+local t=P:GetPlayers()table.sort(t,function(a,b)return a.Name<b.Name end)
+for _,p in ipairs(t)do
+local r=Instance.new("Frame")r.Size=UDim2.new(1,-8,0,28)r.BackgroundColor3=p==LP and Color3.fromRGB(30,50,30)or Color3.fromRGB(25,25,35)r.BorderSizePixel=0 r.Parent=pS
+local rc=Instance.new("UICorner")rc.CornerRadius=UDim.new(0,5)rc.Parent=r
+local n=Instance.new("TextLabel")n.Size=UDim2.new(1,-90,1,0)n.Position=UDim2.new(0,6,0,0)n.BackgroundTransparency=1 n.Text=p.Name..(p==LP and " (VC)" or "")n.TextColor3=p==LP and Color3.fromRGB(120,255,120)or Color3.fromRGB(180,200,255)n.TextSize=10 n.Font=Enum.Font.GothamSemibold n.TextXAlignment=Enum.TextXAlignment.Left n.Parent=r
+if p~=LP then
+local tb=Instance.new("TextButton")tb.Size=UDim2.new(0,36,0,22)tb.Position=UDim2.new(1,-78,0,3)tb.BackgroundColor3=Color3.fromRGB(40,60,90)tb.BorderSizePixel=0 tb.Text="📍"tb.TextColor3=Color3.fromRGB(150,200,255)tb.TextSize=11 tb.Font=Enum.Font.GothamBold tb.Parent=r
+local tbc=Instance.new("UICorner")tbc.CornerRadius=UDim.new(0,4)tbc.Parent=tb
+tb.MouseButton1Click:Connect(function()local h=gr()local a=p.Character and p.Character:FindFirstChild("HumanoidRootPart")if h and a then pcall(function()h.CFrame=a.CFrame*CFrame.new(0,3,-5)end)log("📍 TP -> "..p.Name)end end)
+local gb=Instance.new("TextButton")gb.Size=UDim2.new(0,36,0,22)gb.Position=UDim2.new(1,-40,0,3)gb.BackgroundColor3=Color3.fromRGB(70,30,90)gb.BorderSizePixel=0 gb.Text="🧲"gb.TextColor3=Color3.fromRGB(200,150,255)gb.TextSize=11 gb.Font=Enum.Font.GothamBold gb.Parent=r
+local gbc=Instance.new("UICorner")gbc.CornerRadius=UDim.new(0,4)gbc.Parent=gb
+gb.MouseButton1Click:Connect(function()
+if GG.Alvo==p then if GG.Conn then GG.Conn:Disconnect()end GG.Alvo=nil gb.Text="🧲"gb.BackgroundColor3=Color3.fromRGB(70,30,90)log("🛑 Soltou "..p.Name)return end
+GG.Alvo=p gb.Text="✓"gb.BackgroundColor3=Color3.fromRGB(30,90,30)log("🧲 Grudou "..p.Name)
+if GG.Conn then GG.Conn:Disconnect()end
+GG.Conn=R.Heartbeat:Connect(function()if not GG.Alvo then return end local h=gr()if not h then return end local ac=GG.Alvo.Character local ar=ac and ac:FindFirstChild("HumanoidRootPart")if not ar then return end pcall(function()ar.CFrame=h.CFrame*CFrame.new(0,2,-3)end)end)end)
+end
+end
+end
+pS.CanvasSize=UDim2.new(0,0,0,#t*32+8)
+end
+up()
+_G.TogglePlayers=function()pF.Visible=not pF.Visible if pF.Visible then up()log("👥 Lista aberta")else log("👥 Lista fechada")end end
+pX.MouseButton1Click:Connect(function()pF.Visible=false log("👥 Lista fechada")end)
 local function gr()local c=LP.Character return c and c:FindFirstChild("HumanoidRootPart")end
 local function pa()local t={}for _,p in pairs(P:GetPlayers())do if p~=LP and p.Character then table.insert(t,p)end end if #t==0 then return nil end return t[math.random(1,#t)]end
 local function iV()local h=gr()if not h then return end
@@ -99,14 +135,14 @@ conn=U.InputBegan:Connect(function(i,pr)if pr then return end if i.UserInputType
 trocarTecla(vK,"Voo")trocarTecla(nK,"Noclip")trocarTecla(gK,"Grudar")trocarTecla(aK,"Atacar")
 vM.MouseButton1Click:Connect(function()C.Vel=math.max(20,C.Vel-20)vL.Text="Voo:"..C.Vel end)
 vP.MouseButton1Click:Connect(function()C.Vel=math.min(1500,C.Vel+20)vL.Text="Voo:"..C.Vel end)
-cpB.MouseButton1Click:Connect(function()if setclipboard then pcall(function()setclipboard(table.concat(C.L,"\n"))end)log("📋 Copiado!")end end)
-cb.MouseButton1Click:Connect(function()C.V=false C.NC=false C.G=nil C.A=false pV()if C.NCC then C.NCC:Disconnect()end if C.GC then C.GC:Disconnect()end if C.AC then C.AC:Disconnect()end sg:Destroy()log("Fechado")end)
+pB.MouseButton1Click:Connect(function()_G.TogglePlayers()end)
+cb.MouseButton1Click:Connect(function()C.V=false C.NC=false C.G=nil C.A=false pV()if C.NCC then C.NCC:Disconnect()end if C.GC then C.GC:Disconnect()end if C.AC then C.AC:Disconnect()end if GG.Conn then GG.Conn:Disconnect()end sg:Destroy()end)
 U.InputBegan:Connect(function(i,pr)if pr then return end
 if i.UserInputType~=Enum.UserInputType.Keyboard then return end
 local k=i.KeyCode.Name
 if k==C.Teclas.Voo then toggleVoo()
 elseif k==C.Teclas.Noclip then toggleNoclip()
 elseif k==C.Teclas.Grudar then toggleGrudar()
-elseif k==C.Teclas.Atacar then toggleAtacar()end end)
+elseif k==C.Teclas.Atacar then toggleAtacar()
+elseif k=="P" then _G.TogglePlayers()end end)
 log("✅ Painel carregado!")
-log("🔑 Teclas: L=Voo, N=Noclip, K=Grudar, J=Atacar")
