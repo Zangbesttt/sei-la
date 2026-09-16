@@ -1,6 +1,6 @@
 --[[ PAINEL PRINCIPAL ]]
 local P=game:GetService("Players")local R=game:GetService("RunService")local U=game:GetService("UserInputService")local LP=P.LocalPlayer
-local C={V=false,Vel=80,VC=nil,NC=false,NCC=nil,G=nil,GC=nil,A=false,AC=nil,L={"=== LOG ==="},Teclas={Voo="L",Noclip="N",Grudar="K",Atacar="J"},Minimizado=false}
+local C={V=false,Vel=80,VC=nil,NC=false,NCC=nil,G=nil,GC=nil,A=false,AC=nil,L={"=== LOG ==="},Teclas={Voo="L",Noclip="N",Grudar="K",Atacar="J"}}
 local function log(m)table.insert(C.L,"["..os.date("%H:%M:%S").."] "..m)if #C.L>60 then table.remove(C.L,2)end if _G.UL then _G.UL()end end
 _G.LOG=log
 local sg=Instance.new("ScreenGui")sg.Name="P1"sg.ResetOnSpawn=false sg.Parent=LP:WaitForChild("PlayerGui")
@@ -113,4 +113,3 @@ pB.MouseButton1Click:Connect(function()if _G.TogglePlayers then _G.TogglePlayers
 _G.TogglePlayers=function()end
 log("✅ Painel carregado!")
 log("🔑 Teclas: L=Voo, N=Noclip, K=Grudar, J=Atacar")
-log("Clique nas teclas do lado pra trocar")
