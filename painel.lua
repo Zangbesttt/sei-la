@@ -30,15 +30,14 @@ local vB,vK=mk(34,"🕊️ VOAR: OFF","L",function()end)
 local nB,nK=mk(62,"👻 NOCLIP: OFF","N",function()end)
 local gB,gK=mk(90,"🧲 GRUDAR: OFF","K",function()end)
 local aB,aK=mk(118,"⚔️ ATACAR: OFF","J",function()end)
-local pB=mk(146,"👥 PLAYERS [P]",nil,function()end)
-local vF=Instance.new("Frame")vF.Size=UDim2.new(0.9,0,0,20)vF.Position=UDim2.new(0.05,0,0,174)vF.BackgroundColor3=Color3.fromRGB(10,10,20)vF.BorderSizePixel=0 vF.Parent=m
+local vF=Instance.new("Frame")vF.Size=UDim2.new(0.9,0,0,20)vF.Position=UDim2.new(0.05,0,0,146)vF.BackgroundColor3=Color3.fromRGB(10,10,20)vF.BorderSizePixel=0 vF.Parent=m
 local vF1=Instance.new("UICorner")vF1.CornerRadius=UDim.new(0,5)vF1.Parent=vF
 local vL=Instance.new("TextLabel")vL.Size=UDim2.new(1,-50,1,0)vL.Position=UDim2.new(0,5,0,0)vL.BackgroundTransparency=1 vL.Text="Voo:80"vL.TextColor3=Color3.fromRGB(0,200,255)vL.TextSize=10 vL.Font=Enum.Font.GothamBold vL.Parent=vF
 local vM=Instance.new("TextButton")vM.Size=UDim2.new(0,20,0,16)vM.Position=UDim2.new(1,-46,0,2)vM.BackgroundColor3=Color3.fromRGB(20,20,40)vM.BorderSizePixel=0 vM.Text="−"vM.TextColor3=Color3.fromRGB(0,180,255)vM.TextSize=11 vM.Font=Enum.Font.GothamBold vM.Parent=vF
 local vM1=Instance.new("UICorner")vM1.CornerRadius=UDim.new(0,4)vM1.Parent=vM
 local vP=Instance.new("TextButton")vP.Size=UDim2.new(0,20,0,16)vP.Position=UDim2.new(1,-24,0,2)vP.BackgroundColor3=Color3.fromRGB(20,20,40)vP.BorderSizePixel=0 vP.Text="+"vP.TextColor3=Color3.fromRGB(0,180,255)vP.TextSize=11 vP.Font=Enum.Font.GothamBold vP.Parent=vF
 local vP1=Instance.new("UICorner")vP1.CornerRadius=UDim.new(0,4)vP1.Parent=vP
-local lF=Instance.new("Frame")lF.Size=UDim2.new(0.9,0,0,240)lF.Position=UDim2.new(0.05,0,0,198)lF.BackgroundColor3=Color3.fromRGB(5,5,15)lF.BorderSizePixel=0 lF.Parent=m
+local lF=Instance.new("Frame")lF.Size=UDim2.new(0.9,0,0,280)lF.Position=UDim2.new(0.05,0,0,174)lF.BackgroundColor3=Color3.fromRGB(5,5,15)lF.BorderSizePixel=0 lF.Parent=m
 local lF1=Instance.new("UICorner")lF1.CornerRadius=UDim.new(0,6)lF1.Parent=lF
 local lB=Instance.new("TextBox")lB.Size=UDim2.new(1,-8,1,-8)lB.Position=UDim2.new(0,4,0,4)lB.BackgroundTransparency=1 lB.Text="=== LOG ==="lB.TextColor3=Color3.fromRGB(180,220,180)lB.TextSize=9 lB.Font=Enum.Font.Code lB.TextXAlignment=Enum.TextXAlignment.Left lB.TextYAlignment=Enum.TextYAlignment.Top lB.TextWrapped=true lB.TextEditable=true lB.ClearTextOnFocus=false lB.MultiLine=true lB.Parent=lF
 _G.UL=function()lB.Text=table.concat(C.L,"\n")end
@@ -109,7 +108,5 @@ if k==C.Teclas.Voo then toggleVoo()
 elseif k==C.Teclas.Noclip then toggleNoclip()
 elseif k==C.Teclas.Grudar then toggleGrudar()
 elseif k==C.Teclas.Atacar then toggleAtacar()end end)
-pB.MouseButton1Click:Connect(function()if _G.TogglePlayers then _G.TogglePlayers()end end)
-_G.TogglePlayers=function()end
 log("✅ Painel carregado!")
 log("🔑 Teclas: L=Voo, N=Noclip, K=Grudar, J=Atacar")
